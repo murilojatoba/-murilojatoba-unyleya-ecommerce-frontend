@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>Cadastro de Produtos</h1>
+
+  <ul *ngIf="produtos.length">
+    <li *ngFor="let produto of produtos">{{produto.codigo}} - {{produto.nome}} - {{produto.preco}}</li>
+  </ul>
+
+  <div class="botoes">
+    <button mat-raised-button color="primary" (click)="novo()">
+      Novo
+    </button>
+  </div>
+</div>
