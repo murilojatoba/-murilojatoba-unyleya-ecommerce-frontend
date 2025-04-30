@@ -1,13 +1,41 @@
 <div class="container">
   <h1>Cadastro de Produtos</h1>
 
-  <ul *ngIf="produtos.length">
-    <li *ngFor="let produto of produtos">{{produto.codigo}} - {{produto.nome}} - {{produto.preco}}</li>
-  </ul>
+  <p *ngIf="!produtos.length">Ainda não há produtos cadastrados. Click em Novo para cadastrar.</p>
+
+  <table mat-table [dataSource]="produtos" class="mat-elevation-z8" *ngIf="produtos.length">
+    <ng-container matColumnDef="acoes">
+      <th mat-header-cell *matHeaderCellDef class="col-acoes">Ações</th>
+      <td mat-cell *matCellDef="let produto">
+        <button mat-icon-button color="primary" aria-label="Editar" (click)="editar(produto.id)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" aria-label="Excluir" (click)="excluir(produto.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="codigo">
+      <th mat-header-cell *matHeaderCellDef class="col-codigo">Código</th>
+      <td mat-cell *matCellDef="let produto">{{produto.codigo}}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef class="col-nome">Nome</th>
+      <td mat-cell *matCellDef="let produto">{{produto.nome}}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="preco">
+      <th mat-header-cell *matHeaderCellDef class="col-preco">Preço</th>
+      <td mat-cell *matCellDef="let produto">{{produto.preco}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 
   <div class="botoes">
-    <button mat-raised-button color="primary" (click)="novo()">
-      Novo
-    </button>
+    <button mat-raised-button class="btn" color="primary" (click)="novo()">Novo</button>
   </div>
 </div>

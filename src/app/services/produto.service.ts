@@ -20,7 +20,35 @@ export class ProdutoService {
     return this.http.get<Produto[]>(this.endpoint);
   }
 
-  cadastrar(produto: Produto): Observable<Produto> {
-    return this.http.post<Produto>(this.endpoint, produto);
+  listar(id: number): Observable<Produto> {
+    return this.http.get<Produto>(this.endpoint + id);
   }
+
+  cadastrar(produto: Produto): Observable<Produto> {
+    try {
+      return this.http.post<Produto>(this.endpoint, produto);
+
+    } catch(error){
+      throw new Error('Houve erro ao cadastrar o produto');
+    }
+  }
+
+  excluir(id: number): Observable<void> {
+    try {
+      return this.http.delete<void>(this.endpoint + id);
+
+    } catch(error){
+      throw new Error('Houve erro ao excluir o produto');
+    }
+  }
+
+  editar(produto: Produto): Observable<Produto> {
+    try {
+      return this.http.put<Produto>(this.endpoint + produto.id, produto);
+
+    } catch(error){
+      throw new Error('Houve erro ao editar o produto');
+    }
+  }
+
 }

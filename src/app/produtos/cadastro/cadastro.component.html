@@ -2,26 +2,24 @@
   <h1>Cadastro de Produtos</h1>
 
   <form #form="ngForm">
-    <mat-form-field>
+    <mat-form-field class="form">
       <mat-label>Código</mat-label>
-      <input matInput name="codigo" [(ngModel)]="produto.codigo" required>
+      <input matInput type="number" name="codigo" [(ngModel)]="produto.codigo" required>
     </mat-form-field>
-    
-    <mat-form-field>
+
+    <mat-form-field class="form nome">
       <mat-label>Nome</mat-label>
       <input matInput name="nome" [(ngModel)]="produto.nome" required>
     </mat-form-field>
-    
-    <mat-form-field>
+
+    <mat-form-field class="form">
       <mat-label>Preço</mat-label>
       <input matInput name="preco" [(ngModel)]="produto.preco" required>
     </mat-form-field>
   </form>
 
-  <button mat-raised-button color="primary" (click)="cadastrar()" [disabled]="form.invalid">
-    Cadastrar
-  </button>
-  <button mat-raised-button color="accent" (click)="cancelar()">
-    Cancelar
-  </button>
+  <div class="botoes">
+    <button mat-raised-button class="btn" color="primary" (click)="gravar()" [disabled]="form.invalid">Gravar</button>
+    <button mat-raised-button class="btn" color="accent" (click)="cancelar()">Voltar</button>
+  </div>
 </div>
